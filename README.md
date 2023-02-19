@@ -87,7 +87,11 @@ python udaemon.py status <service-name>;
 ```
 
 ## Example
-Inside example folder there's a heartbeat logger. If you want to test **udaemon** go ahead and run:
+Inside example folder there's a heartbeat logger.
+
+Modify the `WorkingDirectory` parameter on the [example service definition](example/example.service) such that it points to the root of this project.
+
+If you want to test **udaemon** go ahead and run:
 
 ```console
 python udaemon.py add example.service example/example.service;
