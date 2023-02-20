@@ -45,7 +45,7 @@ class SystemctlCLI():
             service_name
         ]
 
-        self._run(command)
+        return self._run(command)
 
     def _run(self, command: list):
         """
@@ -60,3 +60,5 @@ class SystemctlCLI():
         result = subprocess.run(command)
 
         logging.debug('systemctl: %s', result)
+
+        return result.returncode

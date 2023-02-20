@@ -107,7 +107,7 @@ class UdaemonCLI():
             self._systemctl.action('enable', service_name)
             self._systemctl.action('start', service_name)
 
-    def remove_service(self, service_name: str):
+    def remove_service(self, service_name: str) -> int:
         """
         Remove service from available list.
 
@@ -128,10 +128,12 @@ class UdaemonCLI():
 
             os.remove(service_path)
             logging.info('service %s has been removed', service_name)
+            return 0
         else:
             logging.error('no service %s to remove', service_name)
+            return 1
 
-    def list_available(self):
+    def list_available(self) -> int:
         """
         List available services to daemonize.
         """
@@ -150,7 +152,9 @@ class UdaemonCLI():
         else:
             logging.info('no services deployed yet')
 
-    def run(self):
+        return 0
+
+    def run(self) -> int:
         """
         Run program with the specified parameters.
         """
@@ -164,10 +168,10 @@ class UdaemonCLI():
 
         if (action in self._udaemon_actions):
             if (action == 'list'):
-                self.list_available()
+                return self.list_available()
             if (action == 'add'):
-                self.add_service(service_name, service_path)
+                return self.add_service(service_name, service_path)
             elif (action == 'remove'):
-                self.remove_service(service_name)
+                return self.remove_service(service_name)
         elif (action in self._systemctl_actions):
-            self._systemctl.action(action, service_name)
+            return self._systemctl.action(action, service_name)

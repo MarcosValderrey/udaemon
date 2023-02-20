@@ -69,7 +69,7 @@ def example_service():
 
     while killer.running:
         logging.info('heartbeat')
-        time.sleep(5)
+        time.sleep(10)
 
     logging.info('example end')
 

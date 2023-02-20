@@ -4,7 +4,7 @@ Description="Example service to test systemd capabilities"
 [Service]
 Type=simple
 StandardOutput=journal
-WorkingDirectory=/path/to/this/project/example
+WorkingDirectory=/home/marcos/high/dev/utils/udaemon/example
 ExecStart=python example.py
 Restart=always
 
