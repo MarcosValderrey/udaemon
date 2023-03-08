@@ -30,7 +30,13 @@ class Settings():
         self.DATETIME_FORMAT = '%Y-%m-%d %I:%M:%S'
         self.LOG_FORMAT = '%(asctime)s %(levelname)s: %(message)s'
 
-        self.logger = CustomLogger(root_path, self.DATETIME_FORMAT, self.LOG_FORMAT)
+        self.logger = self._get_logger()
 
-        # logging.debug('SYSTEMD_ROOT_SERVICES = %s', self.SYSTEMD_ROOT_SERVICES)
-        # logging.debug('SYSTEMD_USER_SERVICES = %s', self.SYSTEMD_USER_SERVICES)
+    def _get_logger(self) -> CustomLogger:
+        """Build custom logger."""
+
+        return CustomLogger(
+            self.ROOT_PATH,
+            self.DATETIME_FORMAT,
+            self.LOG_FORMAT
+        )
